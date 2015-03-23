@@ -1,0 +1,2 @@
+Application-Version: 1.0
+Main-Class: ru.cargoonline.client.ClientApplication

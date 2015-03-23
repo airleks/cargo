@@ -1,0 +1,53 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://cargoonline.ru/schema/common/generated"
+           targetNamespace="http://cargoonline.ru/schema/common/generated" elementFormDefault="qualified">
+
+    <xs:element name="xmlusers">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="users" maxOccurs="unbounded" type="tns:xmluser"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="xmluser">
+            <xs:sequence>
+                <xs:element name="code" type="xs:string"/>
+                <xs:element name="username" type="xs:string"/>
+                <xs:element name="firstname" type="xs:string"/>
+                <xs:element name="lastname" type="xs:string"/>
+                <xs:element name="age">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:integer">
+                            <xs:minInclusive value="0"/>
+                            <xs:maxInclusive value="120"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="address" type="tns:address"/>
+                <xs:element name="birth" type="xs:date"/>
+                <!--todo make unique values restriction-->
+                <xs:element name="flags" maxOccurs="1" minOccurs="1">
+                    <xs:simpleType>
+                        <xs:list>
+                            <xs:simpleType>
+                                <xs:restriction base="xs:string">
+                                    <xs:enumeration value="active" />
+                                    <xs:enumeration value="deleted" />
+                                    <xs:enumeration value="superuser" />
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:list>
+                    </xs:simpleType>
+                </xs:element>
+            </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="address">
+        <xs:sequence>
+            <xs:element name="country" type="xs:string"/>
+            <xs:element name="city" type="xs:string"/>
+            <xs:element name="street" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>
